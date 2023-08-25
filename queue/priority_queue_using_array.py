@@ -1,4 +1,4 @@
-from static_array import StaticArray
+from array.static_array import StaticArray
 
 
 class PriorityQueueUsingArray(object):

@@ -1,4 +1,4 @@
-from stack_using_staic_array import StackUsingStaticArray
+from stack.stack_using_staic_array import StackUsingStaticArray
 
 
 class QueueUsingStack(object):
