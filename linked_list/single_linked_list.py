@@ -12,6 +12,9 @@ class _Node(object):
         self.value = value
         self.next = None
 
+    def __repr__(self) -> str:
+        return f"Node={self.value}"
+
 
 class LinkedList(object):
     def __init__(self) -> None:
@@ -136,6 +139,9 @@ class LinkedList(object):
             pointer_2 = pointer_2.next
 
         return pointer_1.value
+    
+    def __str__(self):
+        return str(self.to_list())
 
 
 # Instantiate LinkedList object

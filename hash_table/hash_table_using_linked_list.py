@@ -1,4 +1,4 @@
-from linked_list.linked_list import LinkedList
+from linked_list.single_linked_list import LinkedList
 
 class Entry:
     def __init__(self, key: int, value: str) -> None:
