@@ -5,9 +5,10 @@ from binary_search_tree import BinarySearchTree
 
 def is_this_binary_search_tree(root: Node, min_value, max_value) -> bool:
     if not isinstance(root, Node): return True
-    elif root.value < min_value or  root.value > max_value: return False
-    return (is_this_binary_search_tree(root.left_child, min_value, root.value - 1) and 
-            is_this_binary_search_tree(root.right_child, root.value + 1, max_value))
+    # elif root.value < min_value or  root.value > max_value: return False
+    return ( root.value > min_value and root.value < max_value and
+            is_this_binary_search_tree(root.left_child, min_value, root.value) and 
+            is_this_binary_search_tree(root.right_child, root.value, max_value))
 
 
 
@@ -22,6 +23,7 @@ binary_tree.insert(1)
 binary_tree.insert(6)
 binary_tree.insert(10)
 binary_tree.insert(8)
+
 print(is_this_binary_search_tree(binary_tree.root, float("-inf"), float("inf")))
 
 
