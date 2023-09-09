@@ -1,4 +1,13 @@
-from array.static_array import StaticArray
+# priority_queue_using_array.py
+
+import sys
+import os
+
+# Add the root directory to the Python path
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root_dir)
+
+from custom_array.static_array import StaticArray
 
 
 class PriorityQueueUsingArray(object):
@@ -14,9 +23,7 @@ class PriorityQueueUsingArray(object):
             self.__static_array.insert_item(self.__queue_size, new_item)
         else:
             for i in range(self.__queue_size - 1, -1, -1):
-                print(i)
                 current_item = self.__static_array.array[i]
-                print(current_item)
                 if current_item > new_item:
                     self.__static_array.array[i+1] = current_item
                 else:

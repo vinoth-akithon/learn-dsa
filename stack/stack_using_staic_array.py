@@ -1,4 +1,4 @@
-from array.static_array import StaticArray
+from custom_array.static_array import StaticArray
 
 
 class StackUsingStaticArray(object):

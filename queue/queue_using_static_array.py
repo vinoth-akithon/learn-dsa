@@ -1,4 +1,11 @@
-from array.static_array import StaticArray
+import sys, os
+
+# Add the root directory to the Python path
+root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root_dir)
+
+
+from custom_array.static_array import StaticArray
 
 
 
@@ -63,8 +70,8 @@ queue.enqueue(30)
 print(queue)
 
 # removing an item from the queue
-print(queue.dequeue())
-print(queue.dequeue())
+# print(queue.dequeue())
+# print(queue.dequeue())
 # print(queue.dequeue())
 print(queue)
 # queue.dequeue()
