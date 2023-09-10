@@ -98,6 +98,12 @@ class Heap(object):
             self.__heap_array.insert(0, self.__heap_array.pop())
             self.__bubble_down()
         return removed_value
+    
+    def max(self) -> int:
+        """It will return max value in the heap"""
+        if self.heap_size == 0:
+            raise ValueError("Heap is empty!")
+        return self.__heap_array[0]
 
 
 # heap = Heap()
