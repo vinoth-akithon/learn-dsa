@@ -50,9 +50,9 @@ def traversal_in_order(root):
         traversal_in_order(root.right_child)
 
 # Test Case 1
-root = insert(Node(2), 1)
-root = insert(root, 3)
-root = insert(root, 4)
+# root = insert(Node(2), 1)
+# root = insert(root, 3)
+# root = insert(root, 4)
 
 # Test Case 2
 # root = insert(Node(2), 1)
@@ -61,6 +61,6 @@ root = insert(root, 4)
 # root = insert(root, 4)
 
 
-traversal_in_order(root)
+# traversal_in_order(root)
 
 
