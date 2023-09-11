@@ -8,7 +8,6 @@ heappush(heap, 6)
 heappush(heap, 3)
 heappush(heap, 4)
 heappush(heap, 5)
-g
 # To pop an item from heap
 # heappop(heap)
 
