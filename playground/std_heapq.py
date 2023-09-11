@@ -4,10 +4,10 @@ from heapq import *
 heap = []
 
 # To push an item into heap
-heappush(heap, 6)
-heappush(heap, 3)
-heappush(heap, 4)
-heappush(heap, 5)
+# heappush(heap, 6)
+# heappush(heap, 3)
+# heappush(heap, 4)
+# heappush(heap, 5)
 # To pop an item from heap
 # heappop(heap)
 
@@ -26,4 +26,24 @@ heappush(heap, 5)
 # To find n smallest elements
 # print(nsmallest(2, heap))
 
-print(heap)
+# print(heap)
+
+# sorting array using heap sort 
+def sorting(arr, decending=False):
+    heap = []
+    for i in arr:
+        heappush(heap, i)
+
+    if decending:
+        for i in range(len(heap) -1, -1, -1):
+            arr[i] = heappop(heap)
+    else:
+        for i in range(len(heap)):
+            arr[i] = heappop(heap)
+
+    return arr
+
+# input_array = [100, 20, 50, 30, 10, 40, 90]
+# print(f"Input: {input_array}")
+# print(f"Accending Order: {sorting(input_array)}")
+# print(f"Accending Order: {sorting(input_array, decending=True)}")
