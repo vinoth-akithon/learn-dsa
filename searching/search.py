@@ -18,7 +18,7 @@ class Search(object):
     
 
     def binary_search(self) -> int:
-        return self.__binary_search_using_recursion(0, len(self.__array)-1)
+        return self.__binary_search_using_recursion(self.__array, 0, len(self.__array)-1)
         # return self.__binary_search_using_iteration()
     
 
@@ -39,17 +39,17 @@ class Search(object):
 
     
 
-    def __binary_search_using_recursion(self, left: int, right: int) -> int:
+    def __binary_search_using_recursion(self, array, left: int, right: int) -> int:
         # Base condition
         if right < left:
             return -1
 
         middle = (right + left) // 2
 
-        if self.__target < self.__array[middle]:
-            return self.__binary_search_using_recursion(left, middle-1)
-        elif self.__target > self.__array[middle]:
-            return self.__binary_search_using_recursion(middle+1, right)
+        if self.__target < array[middle]:
+            return self.__binary_search_using_recursion(array, left, middle-1)
+        elif self.__target > array[middle]:
+            return self.__binary_search_using_recursion(array, middle+1, right)
         return middle
 
 
@@ -92,10 +92,20 @@ class Search(object):
                 return i
         return -1
 
+
+    def exponentail_search(self):
+        bound = 1
+        while (bound < len(self.__array) and self.__array[bound] < self.__target):
+            bound *= 2
+
+        lower_bound = bound // 2
+        upper_bound = min(bound, len(self.__array) -1)
+        return self.__binary_search_using_recursion(self.__array, lower_bound, upper_bound)
+
 if __name__ == "__main__":
 
     # input_array = [1, 4, 3, 7, 2, 6]; target = 3
-    input_array = [10, 20, 30, 40, 60, 80, 90, 110]; target = 100
+    input_array = [10, 20, 30, 40, 50, 60]; target = 100
     # input_array = []; target = 80
 
     # Search object Instatiation
@@ -111,4 +121,7 @@ if __name__ == "__main__":
     # print(search.ternary_search())
 
     # Jump search
-    print(search.jump_search())
+    # print(search.jump_search())
+
+    # Exponentail Search
+    print(search.exponentail_search())
