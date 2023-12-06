@@ -1,0 +1,12 @@
+1. https://resumeworded.com/
+
+- score made up of 5 categories
+    1. Impact
+    2. Brevity
+    3. Style
+    4. Sections
+    5. soft skills
+
+
+
+Implemented Flask-based API development, integrating React JS for seamless user experience; optimized database queries using MongoDB Aggregation framework, resulting in 50% faster data retrieval and improved scalability on cloud infrastructure managed with AWS.
