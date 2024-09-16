@@ -37,8 +37,8 @@ def longest_subscript_after_replacement(S: str, K: int) -> int:
     for end in range(len(S)):
         right_char = S[end]
         hash_table[right_char] += 1
-        max_repeated_char_count = max(max_repeated_char_count,
-                                      hash_table[right_char])
+        if max_repeated_char_count < hash_table[right_char]:
+            max_repeated_char_count = hash_table[right_char]
 
         if (end + 1 - start - max_repeated_char_count) > K:
             left_char = S[start]
@@ -47,28 +47,7 @@ def longest_subscript_after_replacement(S: str, K: int) -> int:
                 hash_table.pop(left_char)
             start += 1
 
-        max_length = max(max_length, end + 1 - start)
-
-    return max_length
-
-
-def longest_subscript_after_replacement2(S: str, K: int) -> int:
-    start = 0
-    max_length = 0
-    # max_repeated_char_count = 0
-    hash_table = defaultdict(int)
-
-    for end in range(len(S)):
-        right_char = S[end]
-        hash_table[right_char] += 1
-        max_repeated_char_count = hash_table[right_char]
-
-        if (end + 1 - start - max_repeated_char_count) > K:
-            left_char = S[start]
-            hash_table[left_char] -= 1
-            if hash_table[left_char] == 0:
-                hash_table.pop(left_char)
-            start += 1
+            max_repeated_char_count = max(hash_table.values(), default=0)
 
         max_length = max(max_length, end + 1 - start)
 
@@ -77,20 +56,20 @@ def longest_subscript_after_replacement2(S: str, K: int) -> int:
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
-        return self.assertEqual(longest_subscript_after_replacement("aabccbb", 2), 5)
+        return self.assertEqual(
+            longest_subscript_after_replacement("aabccbb", 2), 5)
 
     def test_case2(self):
-        return self.assertEqual(longest_subscript_after_replacement("abbcb", 1), 4)
+        return self.assertEqual(
+            longest_subscript_after_replacement("abbcb", 1), 4)
 
     def test_case3(self):
-        return self.assertEqual(longest_subscript_after_replacement("abccde", 1), 3)
+        return self.assertEqual(
+            longest_subscript_after_replacement("abccde", 1), 3)
 
 
 if __name__ == "__main__":
-    # unittest.main()
-    print(longest_subscript_after_replacement2("aabccbb", 2))
+    unittest.main()
+    # print(longest_subscript_after_replacement("AABABBA", 1))
     # print(timeit.timeit("longest_subscript_after_replacement('aabccbb', 2)",
     #                     setup="from __main__ import longest_subscript_after_replacement"))
-
-    # print(timeit.timeit("longest_subscript_after_replacement2('aabccbb', 2)",
-    #                     setup="from __main__ import longest_subscript_after_replacement2"))
