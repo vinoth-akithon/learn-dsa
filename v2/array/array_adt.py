@@ -1,20 +1,37 @@
 from typing import Any
+from abc import ABC, abstractmethod
 
-class Array:
+class Array(ABC):
     """ ADT for array data structure."""
 
-    def create(self, size: int, type: Any) -> None:
-        """Create a new array of given size and data type."""
+    @abstractmethod
+    def insert(self, index:int, item: Any) -> None:
+        """Insert an element into the array."""
         pass
 
+    @abstractmethod
+    def update(self, index: int, item: Any) -> None:
+        """Update an item with the new value in the specified index."""
+        pass
+
+    @abstractmethod
     def get(self, index: int) -> Any:
         """Get the element at given index."""
         pass
 
-    def set(self, index: int, value: Any) -> None:
-        """Set the element at givent index."""
+    @property
+    @abstractmethod
+    def length(self):
+        """Return the count of filled slots of the array."""
         pass
 
-    def length(self):
-        """Return the size of the array."""
+    @property
+    @abstractmethod
+    def capacity(self):
+        """Return the capacity of the array."""
+        pass
+
+    @abstractmethod
+    def remove(self, index: int) -> Any:
+        """Remove item at specified index"""
         pass
