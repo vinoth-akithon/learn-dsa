@@ -2,32 +2,59 @@
 Selection Sort Implementation
 
 The name selction sort implies that for each pass,
-we are selecting the minimum value from the un sorted array.
+we are selecting the maxlimum value from the array 
+and move it into right position.
 """
 
-class SelectionSort(object):
-    def __init__(self, array: list) -> None:
-        self.__array = array
+import unittest
+from typing import TypeVar
+
+T = TypeVar("T", int, float)
+
+def selection_sort(arr: list[T]) -> None:
+    n = len(arr)
+    for i in range(n-1, 0, -1):
+        max_value_index = 0
+        for j in range(1, i+1):
+            if arr[j] > arr[max_value_index]:
+                max_value_index = j
+        arr[max_value_index], arr[i] = arr[i], arr[max_value_index]
 
 
-    def sort(self) -> list:
-        no_of_passes = len(self.__array)
-        for i in range(no_of_passes - 1):
-            min_value_index = i
-            for j in range(i, no_of_passes):
-                if self.__array[j] < self.__array[min_value_index]:
-                    min_value_index = j
-            self.__array[i], self.__array[min_value_index] = \
-                self.__array[min_value_index], self.__array[i]
-        return self.__array
+class TestCase(unittest.TestCase):
+    def test_unsorted_array(self) -> None:
+        arr = [5,2,10,1,3]
+        selection_sort(arr)
+        self.assertEqual(arr, [1,2,3,5,10])
 
+    def test_single_element_array(self) -> None:
+        arr = [1]
+        selection_sort(arr)
+        self.assertEqual(arr, [1])
 
+    def test_empty_array(self) -> None:
+        arr = []
+        selection_sort(arr)
+        self.assertEqual(arr, [])
+
+    def test_deplicate_elements_array(self) -> None:
+        arr = [1,1,1]
+        selection_sort(arr)
+        self.assertEqual(arr, [1,1,1])
+
+    def test_reverse_sorted_array(self) -> None:
+        arr = [5,4,3,2,1,0]
+        selection_sort(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+
+    def test_already_sorted_array(self) -> None:
+        arr = [0,1,2,3,4,5]
+        selection_sort(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+
+    
 
 if __name__ == "__main__":
-
-    input_array = [8, 2, 4, 1, 3]
-    # input_array = [10, 2]
-    s_sort = SelectionSort(input_array)
-    print(s_sort.sort())
+    unittest.main()
 
      
