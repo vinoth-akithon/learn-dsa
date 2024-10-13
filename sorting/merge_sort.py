@@ -2,63 +2,81 @@
 Merge Sort Implementaion
 """
 
-class MergeSort(object):
-    def __init__(self, array: list) -> None:
-        self.__array = array
+import unittest
+from typing import TypeVar
 
+T = TypeVar("T", int, float)
     
-    def sort(self) -> list:
-        return self.__sort(self.__array)
 
-    
-    def __sort(self, array: list) -> list:
-        # Base condition for recursion
-        if len(array) < 2:
-            return array
-        
-        # devide the array into half and sort them seperately
-        middle = len(array)//2
-        left_array = self.__sort(array[:middle])
-        right_array = self.__sort(array[middle:])
-
-        # merge the sorted sub array
-        return self.__merge(left_array, right_array, array)
-
-    
-    def __merge(self, left_array: list, right_array: list, array: list) -> list:
-        i = j = k = 0
-        while (i < len(left_array) and j < len(right_array)):
-            if (left_array[i] <= right_array[j]):
-                array[k] = left_array[i]
-                i += 1
-            else:
-                array[k] = right_array[j]
-                j += 1 
-            k += 1
-
-        while (i < len(left_array)):
-            array[k] = left_array[i]
+def merge(left_arr: list[T], right_arr: list[T], arr) -> list[T]:
+    i = j = k = 0
+    while (i < len(left_arr) and j < len(right_arr)):
+        if left_arr[i] <= right_arr[j]:
+            arr[k] = left_arr[i]
             i += 1
-            k += 1
-
-        while (j < len(right_array)):
-            array[k] = right_array[j]
+        else:
+            arr[k] = right_arr[j]
             j += 1
-            k += 1
+        k += 1
+    while (i < len(left_arr)):
+        arr[k] = left_arr[i]
+        i += 1
+        k += 1
+    while (j < len(right_arr)):
+        arr[k] = right_arr[j]
+        j += 1
+        k += 1
+    return arr
 
-        return array
-        
+
+def merge_sort(arr: list[T]) -> list[T]:
+    n = len(arr)
+    # base condition for recursion
+    if n < 2:
+        return arr
+
+    # devide the array into half and sort them seperately
+    mid = n//2
+    left_arr = merge_sort(arr[:mid])
+    right_arr = merge_sort(arr[mid:])
+
+    # merge the two sorted subarray
+    return merge(left_arr, right_arr, arr)
 
 
 
-    def __repr__(self) -> str:
-        return f"{self.__array}"
+class TestCase(unittest.TestCase):
+    def test_unsorted_array(self) -> None:
+        arr = [5,2,10,1,3]
+        merge_sort(arr)
+        self.assertEqual(arr, [1,2,3,5,10])
 
+    def test_single_element_array(self) -> None:
+        arr = [1]
+        merge_sort(arr)
+        self.assertEqual(arr, [1])
 
+    def test_empty_array(self) -> None:
+        arr = []
+        merge_sort(arr)
+        self.assertEqual(arr, [])
+
+    def test_deplicate_elements_array(self) -> None:
+        arr = [1,1,1]
+        merge_sort(arr)
+        self.assertEqual(arr, [1,1,1])
+
+    def test_reverse_sorted_array(self) -> None:
+        arr = [5,4,3,2,1,0]
+        merge_sort(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+
+    def test_already_sorted_array(self) -> None:
+        arr = [0,1,2,3,4,5]
+        merge_sort(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+
+    
 
 if __name__ == "__main__":
-
-    # input_array = [8, 2, 4, 1 ,3]
-    input_array = [8, 2, 4, 1]
-    m_sort = MergeSort(input_array)
-    print(m_sort.sort())
+    unittest.main()
