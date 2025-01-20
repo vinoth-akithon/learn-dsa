@@ -17,3 +17,20 @@ def square_root(N):
     L = 1
     R = N
     cnt = 0
+
+
+def print_reverse_triangle_pattern(size: int) -> None:
+    print_reverse_triangle_pattern_helper(size, 0)
+
+
+def print_reverse_triangle_pattern_helper(r: int, c: int) -> None:
+    # Base condition
+    if r == 0:
+        return 
+    
+    if c < r:
+        print_reverse_triangle_pattern_helper(r, c+1)
+        print("*", end = " ")
+    else:
+        print_reverse_triangle_pattern_helper(r-1, 0)
+        print()

@@ -17,7 +17,7 @@ Pattern 1: Sliding Window
 
     - We need to iterate until we get first window, then we 
     need to slide the window one step by adding next element
-    and removing the first element to form a window.
+    and removing the first element to form a new window.
 
     - For the above problem size of the window fixed (K),
     but some problems, size is not fixed, we have to expand or 

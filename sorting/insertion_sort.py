@@ -1,5 +1,7 @@
 """
-Insertion sort implementation
+Insertion sort implementation.
+
+GFG: https://www.geeksforgeeks.org/problems/insertion-sort/1
 """
 
 import unittest
@@ -11,13 +13,28 @@ T = TypeVar("T", int, float)
 def insertion_sort(arr: list[T]) -> None:
     n = len(arr)
     for i in range(1, n):
+        j = i-1
         temp = arr[i]
-        j = i
+        while (j >= 0 and temp < arr[j]):
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+            j -= 1;
+        arr[j+1] = temp
 
-        while (j > 0 and arr[j-1] > temp):
-            arr[j] = arr[j-1]
-            j -= 1
-        arr[j] = temp
+
+def insertion_sort_recursive(arr: list[int]) -> None:
+    if len(arr) < 2:
+        return 
+    insertion_sort_recursive_helper(arr, 0, 1, arr[1])
+
+def insertion_sort_recursive_helper(arr, j, i, value) -> None:
+    if (j >= 0 and value < arr[j]):
+        arr[j], arr[j+1] = arr[j+1], arr[j]
+        insertion_sort_recursive_helper(arr, j-1, i, value)
+    else:
+        arr[j+1] = value
+        if i+1 == len(arr):
+            return 
+        insertion_sort_recursive_helper(arr, i, i+1, arr[i+1])
 
 
 
@@ -26,30 +43,66 @@ class TestCase(unittest.TestCase):
         arr = [5,2,10,1,3]
         insertion_sort(arr)
         self.assertEqual(arr, [1,2,3,5,10])
+        arr = [5,2,10,1,3]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [1,2,3,5,10])
+        arr = [5,2,10,1,3]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [1,2,3,5,10])
 
     def test_single_element_array(self) -> None:
         arr = [1]
         insertion_sort(arr)
+        self.assertEqual(arr, [1])
+        arr = [1]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [1])
+        arr = [1]
+        insertion_sort_recursive(arr)
         self.assertEqual(arr, [1])
 
     def test_empty_array(self) -> None:
         arr = []
         insertion_sort(arr)
         self.assertEqual(arr, [])
+        arr = []
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [])
+        arr = []
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [])
 
     def test_deplicate_elements_array(self) -> None:
         arr = [1,1,1]
         insertion_sort(arr)
+        self.assertEqual(arr, [1,1,1])
+        arr = [1,1,1]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [1,1,1])
+        arr = [1,1,1]
+        insertion_sort_recursive(arr)
         self.assertEqual(arr, [1,1,1])
 
     def test_reverse_sorted_array(self) -> None:
         arr = [5,4,3,2,1,0]
         insertion_sort(arr)
         self.assertEqual(arr, [0,1,2,3,4,5])
+        arr = [5,4,3,2,1,0]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+        arr = [5,4,3,2,1,0]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
 
     def test_already_sorted_array(self) -> None:
         arr = [0,1,2,3,4,5]
         insertion_sort(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+        arr = [0,1,2,3,4,5]
+        insertion_sort_recursive(arr)
+        self.assertEqual(arr, [0,1,2,3,4,5])
+        arr = [0,1,2,3,4,5]
+        insertion_sort_recursive(arr)
         self.assertEqual(arr, [0,1,2,3,4,5])
 
     
