@@ -1,10 +1,11 @@
 def two_sum_sorted(arr: list[int], t: int) -> tuple[int, int]:
     """
+        - LC Link -> https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
         - Keep two pointers one at start of the array `l` and another at end of the array `r`.
         - Summing up the two pointers value
-            - If the summation is equal to target `t` return pointers.
+            - If the summation is equal to target `t` return those pointers.
             - Else if the summation is greater than the target, move the right pointer one step backward.
-            - Else move the left pointer `l` one step forward
+            - Else move the left pointer `l` one step forward. 
         - Complexity
             - Time -> O(n)
             - Space -> O(1)
@@ -19,7 +20,7 @@ def two_sum_sorted(arr: list[int], t: int) -> tuple[int, int]:
         elif s > t:
             r -= 1
         else:
-            return l+1, r+1
+            return l, r
     return -1,-1
 
 def two_sum_sorted2(arr: list[int], t: int) -> list[tuple[int, int]]:
