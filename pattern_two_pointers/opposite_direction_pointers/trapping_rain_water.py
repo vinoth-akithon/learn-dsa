@@ -10,7 +10,7 @@ def trapping_rain_water(arr: list[int]) -> int:
     water = 0
     for i in range(0, n):
         if i == 0:
-            left_max = 0
+            left_max = arr[i]
         else:
             left_max = max(arr[:i])
         if i == n-1:
@@ -36,27 +36,36 @@ def trapping_rain_water2(arr: list[int]) -> int:
             - Space -> O(n)
     """
     n = len(arr)
-    water = 0
-    if n == 0:
-        return water
-    
-    left_max = [0] * n
-    right_max = [0] * n
 
+    left_max = [0] * n
     left_max[0] = arr[0]
+    right_max = [0] * n
+    right_max[-1] = arr[-1]
     for i in range(1, n):
         left_max[i] = max(arr[i], left_max[i-1])
+        right_max[n-1-i] = max(arr[n-1-i], right_max[n-1-i+1])
 
-    right_max[-1] = arr[-1]
-    for i in range(n-2, -1, -1):
-        right_max[i] = max(arr[i], right_max[i+1])
-
+    water = 0
     for i in range(n):
         # As the previous minimum height is always greater than equal to the current wall
-        water = min(left_max[i], right_max[i]) - arr[i]
+        water += min(left_max[i], right_max[i]) - arr[i]
     return water
 
 def trapping_rain_water3(arr: list[int]) -> int:
+    """
+        - Using Two pointers approach. Calculating the maxLeft and and maxRight for an every index on fly.
+        - Keep two poiners `l` and `r` at each end.
+        - Keep two variables `left_max` and `right_max`. Set initial value to 0.
+        - Compare the left and right pointers values for moving the pointer inward after the following operations.
+            - Check if the current pointer value is greater than the previous max. if yes, update the previous max by current value.
+            or else compute the water level by subtracting the previous max and current value.
+            - Finally move the pointer inward.
+        - Do until two pointers are crosses each other.
+
+        - Complexity analysis:
+            - Time -> O(n)
+            - Space -> O(1)
+    """
     n = len(arr)
     if not n:
         return 0
@@ -83,6 +92,6 @@ if __name__ == "__main__":
     arr = [4,2,0,3,2,5]
     # arr = []
     # print(trapping_rain_water(arr))
-    # print(trapping_rain_water2(arr))
-    print(trapping_rain_water3(arr))
+    print(trapping_rain_water2(arr))
+    # print(trapping_rain_water3(arr))
 

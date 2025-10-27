@@ -6,7 +6,7 @@
 
 import sys
 sys.path.append(".")
-from pattern_two_pointers.two_sum2 import two_sum_sorted2
+from pattern_two_pointers.opposite_direction_pointers.two_sum2 import two_sum_sorted2
 
 def three_sum(arr: list[int], t: int=0) -> list[tuple[int, int, int]]:
     """
