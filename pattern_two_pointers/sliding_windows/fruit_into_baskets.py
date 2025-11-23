@@ -1,3 +1,8 @@
+"""
+    Variation of longest substring with k (k=2) repeating characters.
+"""
+
+
 import collections
 
 def total_fruits(arr: list[int]) -> int:
