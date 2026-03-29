@@ -46,7 +46,7 @@ class HashTable:
         
         raise KeyError(f"'{key}' not exist") 
 
-    def remove(self, key: int) -> str:
+    def remove(self, key: int) -> str | None:
         index = self.__get_hash(key)
         
         if self.__hash_table[index] is not None:
@@ -61,7 +61,7 @@ class HashTable:
                         return returned_entry.value
                     return 
                 
-        return KeyError(f"'{key}' not exist")
+        raise KeyError(f"'{key}' not exist")
     def __str__(self):
         return str(self.__hash_table)
 

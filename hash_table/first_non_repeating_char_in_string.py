@@ -9,7 +9,7 @@ def find_first_non_repeating_char_in_str(input_str: str):
         else:
             hash_table[item] = 1
     
-    # This won't for this problem because hash function doesn't follow contigous memory location
+    # This won't for this problem because hash function doesn't follow contiguous memory location
     # for key, value in hash_table.items( ):
     #     if value == 1:
     #         return key
