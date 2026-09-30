@@ -1,7 +1,7 @@
 def nth_fib_recursive(n: int) -> int:
     if n < 2:
         return n
-    return nth_fib_recursive(n-1) + nth_fib_recursive(n-2) # recurrance relation
+    return nth_fib_recursive(n-1) + nth_fib_recursive(n-2) # recursive relation
 
 
 def nth_fib_iterative(n: int) -> int:
@@ -13,5 +13,5 @@ def nth_fib_iterative(n: int) -> int:
     return fibonacci[-1]
 
 if __name__ == "__main__":
-    print(nth_fib_recursive(5))
+    print(nth_fib_recursive(4))
     print(nth_fib_iterative(5))

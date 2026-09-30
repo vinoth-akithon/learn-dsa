@@ -6,6 +6,26 @@
 """
 
 import collections
+from copy import copy
+
+
+def brute_force(arr: list[int], k: int) -> int:
+    n = len(arr)
+    
+    # subarrays = []
+    max_window = 0
+    for i in range(n):
+        subarray = []
+        zero_count = 0
+        for j in range(i, n):
+            if arr[j] == 0 and zero_count >= k:
+                break
+            elif arr[j] == 0:
+                zero_count += 1
+            subarray.append(arr[j])
+            # subarrays.append(copy(subarray))
+            max_window = max(max_window, len(subarray))
+    return max_window
 
 def longest_subarray(arr: list[int], k: int) -> int:
     n = len(arr)

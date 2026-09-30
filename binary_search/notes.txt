@@ -1,0 +1,76 @@
+1. Exact Match
+2. Boundary Search (First True/ Last True)
+    - searching for the boundary (Instead of exact value) where a condition flips
+    - Monotonicity -> condition flips exactly once (if flips more than one -> BS breaks)
+        - for all x < k: condition(x) = False
+        - for all x >= k: condition(x) = True
+
+    - 2 sub patterns
+        - Lower bound -> First True -> ceil
+        - Upper bound -> Last True -> floor
+
+3. Answer space Binary Search
+    - Instead of search through the array, search through possible `Answer`
+    - find the min value of X such that some condition holds
+    - find the max value of x such that some condition holds
+
+    - Transform optimization problem -> decision problem
+    - Most powerful and hidden pattern
+
+    ex:
+        - what is the minimum speed S? --> Is the speed S is feasible?
+        now BS on S from [min_possible, max_possible] 
+
+    - Hint to Identify Answer Space BS
+        - Minimum possible X such that...
+        - Maximum possible X such that...
+        - Minimize the Maximum
+        - Maximize the minimum
+        - answer is a number (not index)
+        - feasibility can be checked in O(n) or O(n log n)
+
+
+    - Generic Template -> Minimize Answer
+
+        def solve():
+            lo = minimum_possible_answer
+            hi = maximum_possible_answer
+            result = hi
+
+            while (lo <= hi):
+                mid = lo + (hi-lo)//2
+
+                if is_feasible(mid):
+                    result = mid
+                    hi = mid -1  # Try smaller
+                else:
+                    lo = mid + 1 # not works, need larger
+
+        def is_feasibility(mid):
+            # checking whether candidate satisfies the problem constrains
+            # Usually O(n)
+            ...
+
+
+    - Generic Template -> Maximize Answer
+
+        def solve():
+            lo = minimum_possible_answer
+            hi = maximum_possible_answer
+            result = lo
+
+            while (lo <= hi):
+                mid = lo + (hi-lo)//2
+
+                if is_feasible(mid):
+                    result = mid
+                    lo = mid + 1   # Try larger 
+                else:
+                    hi = mid -1 # too large, try smaller
+
+4. Predicate BS pattern
+
+5. Rotated Array
+    - One half of the array of the array is always sorted 
+    - key insight is to detect the sorted half
+    - After finding the sorted part, check whether the target lies in the half, if yes go there, else go other part.

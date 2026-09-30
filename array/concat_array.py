@@ -26,7 +26,17 @@ def concatinate(nums: list[int]) -> list[int]:
         nums.append(nums[i])
     return nums
 
+def concatinate2(nums: list[int]) -> list[int]:
+    length = len(nums)
+    answer = [0] * 2 * length
+    for i in range(length):
+        answer[i] = arr[i]
+        answer[i+length] = arr[i]
+    return answer
+
 if __name__ == '__main__':
     # arr = [1,2,1]
     arr = [1,3,2,1]
-    print(concatinate(arr))
+    # print(concatinate(arr))
+    print(concatinate2(arr))
+    

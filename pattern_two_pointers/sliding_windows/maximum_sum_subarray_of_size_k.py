@@ -1,4 +1,29 @@
+def brute_force_approach(arr: list[int], k: int) -> int:
+    """
+        Time Complexity -> O(n * k)
+        Space Complexity -> O(1)
+    """
+    n = len(arr)
+    if n < k:
+        return 0
+    
+    max_sum = float("-inf")
+    for i in range(n-k+1):
+        cur_sum = 0
+        for j in range(i, i+k):
+            cur_sum += arr[j]
+        if cur_sum > max_sum:
+            max_sum = cur_sum
+    return max_sum
+
+
+
 def maximum_sum(arr: list[int], k: int) -> int:
+    """
+        Time Complexity -> O(n)
+        Space Complexity -> O(1)
+    
+    """
     n = len(arr)
     if n < k:
         return 0
@@ -27,6 +52,7 @@ def maximum_sum(arr: list[int], k: int) -> int:
 
 
 if __name__ == "__main__":
-    arr = [2, 1, 5, 1, 3, 2]; k=3
-    # arr = [2, 3, 4, 1, 5]; k=2 
+    # arr = [2, 1, 5, 1, 3, 2]; k=3
+    arr = [2, 3, 4, 1, 5]; k=2 
     print(maximum_sum(arr, k)) 
+    print(brute_force_approach(arr, k))
